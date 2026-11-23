@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Belajar Fisika XI</title>
+<style>
+:root{--bg:#f6f8f5;--card:#fff;--tx:#18261f;--mut:#5b6b62;--pr:#0f7a55;--pr2:#d9efe6;--bd:#dfe6e1;--bad:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#101a15;--card:#18251f;--tx:#e8f1ec;--mut:#9fb2a8;--pr:#3fcf9b;--pr2:#1f3a2f;--bd:#2a3a32;--bad:#ff8a80}}
+:root[data-theme=dark]{--bg:#101a15;--card:#18251f;--tx:#e8f1ec;--mut:#9fb2a8;--pr:#3fcf9b;--pr2:#1f3a2f;--bd:#2a3a32;--bad:#ff8a80}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 Georgia,'Times New Roman',serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--card);border-bottom:1px solid var(--bd);display:flex;gap:8px;align-items:center;padding:10px 14px;z-index:5}
+header b{flex:1;font-size:17px}
+button{font:inherit;font-family:system-ui,sans-serif;font-size:14px;background:var(--pr);color:#fff;border:0;border-radius:10px;padding:9px 14px;cursor:pointer}
+button.g{background:var(--pr2);color:var(--pr)}button.x{background:none;color:var(--bad);border:1px solid var(--bad)}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--pr);outline-offset:2px}
+main{max-width:760px;margin:0 auto;padding:16px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin:0 0 12px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar{height:10px;background:var(--pr2);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pr)}
+.ch{display:flex;gap:12px;align-items:center;cursor:pointer;width:100%;text-align:left;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin:0 0 10px;font-size:16px;font-family:inherit}
+.ch small{display:block;color:var(--mut);font-family:system-ui,sans-serif}
+.tag{font:12px system-ui,sans-serif;padding:3px 9px;border-radius:99px;background:var(--pr2);color:var(--pr)}
+h1,h2,h3{line-height:1.25}h2{margin:.2em 0}
+.f{background:var(--pr2);border-radius:10px;padding:8px 12px;font-family:ui-monospace,Menlo,monospace;margin:6px 0;overflow-x:auto}
+label.o{display:block;border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+label.o.ok{border-color:var(--pr);background:var(--pr2)}label.o.no{border-color:var(--bad)}
+textarea{width:100%;min-height:110px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);padding:10px;font:inherit}
+.ex{font-family:system-ui,sans-serif;font-size:14px;color:var(--mut);margin-top:6px}
+nav.t{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+</style></head><body>
+<header><button class="g" onclick="go('home')" aria-label="Beranda">Beranda</button><b id="ttl">Belajar Fisika XI</b><button class="g" onclick="go('kisi')">Kisi</button><button class="g" onclick="go('notes')">Catatan</button><button class="g" onclick="theme()">Tema</button></header>
+<main id="m"></main>
+<script>
+const D=[
+{t:"Vektor",d:"Besaran yang punya nilai dan arah.",b:`<h3>Besaran vektor dan skalar</h3><p>Vektor punya nilai <i>dan</i> arah: perpindahan, kecepatan, percepatan, gaya. Skalar hanya punya nilai: jarak, laju, massa, waktu.</p><h3>Menguraikan vektor</h3><p>Vektor F dengan sudut θ terhadap sumbu x diuraikan menjadi:</p><div class="f">Fx = F cos θ<br>Fy = F sin θ</div><h3>Resultan</h3><p>Dua vektor saling tegak lurus: <span class="f">R = √(A² + B²)</span> Contoh: berjalan 3 m ke timur lalu 4 m ke utara, perpindahannya 5 m.</p><p>Metode: poligon, jajargenjang, dan analitis (jumlahkan komponen x dan y).</p>`,
+q:[["Berikut yang termasuk besaran vektor adalah…",["Jarak","Laju","Kecepatan","Massa"],2,"Kecepatan punya nilai dan arah. Jarak, laju, massa hanya punya nilai."],
+["Mahasiswa berjalan 3 m ke timur lalu 4 m ke utara. Besar perpindahannya…",["7 m","5 m","1 m","12 m"],1,"Saling tegak lurus: √(3²+4²)=5 m. 7 m adalah jaraknya, bukan perpindahan."],
+["Gaya 20 N membentuk sudut 30° terhadap sumbu x. Komponen pada sumbu y adalah…",["10 N","10√3 N","20 N","40 N"],0,"Fy = 20 sin 30° = 20 × ½ = 10 N."],
+["Dua gaya 6 N dan 8 N saling tegak lurus. Resultannya…",["14 N","2 N","10 N","48 N"],2,"R = √(36+64) = 10 N."]],
+e:"Jelaskan perbedaan jarak dan perpindahan, lalu beri satu contoh nyata."},
+{t:"Kinematika Gerak (GLB, GLBB, grafik v-t)",d:"Gerak lurus dan cara membaca grafik.",b:`<h3>GLB</h3><p>Kecepatan tetap, percepatan nol.</p><div class="f">s = v · t</div><h3>GLBB</h3><p>Percepatan tetap.</p><div class="f">vt = v0 + a·t<br>s = v0·t + ½·a·t²<br>vt² = v0² + 2·a·s</div><h3>Grafik v-t</h3><p>Garis datar = GLB. Garis miring = GLBB. Kemiringan = percepatan. Luas di bawah grafik = jarak (perpindahan). Dua kendaraan punya kecepatan sama saat grafiknya berpotongan.</p>`,
+q:[["Mobil bergerak 20 m/s selama 5 s. Jaraknya…",["4 m","25 m","100 m","200 m"],2,"s = v·t = 20×5 = 100 m."],
+["Benda diam dipercepat 2 m/s² selama 5 s. Kecepatan akhirnya…",["5 m/s","10 m/s","2,5 m/s","25 m/s"],1,"vt = 0 + 2×5 = 10 m/s."],
+["Grafik v-t berupa garis lurus mendatar menunjukkan gerak…",["GLBB dipercepat","GLBB diperlambat","GLB","Diam"],2,"Kecepatan konstan berarti GLB. Jika v=0 barulah benda diam."],
+["Pada grafik v-t, luas di bawah kurva menyatakan…",["Percepatan","Perpindahan","Gaya","Waktu"],1,"Luas = v × t = jarak/perpindahan."]],
+e:"Dua mobil punya grafik v-t berpotongan di t = 10 s. Apa artinya? Apakah keduanya pasti bertemu? Jelaskan."},
+{t:"Hukum Newton dan Gaya Gravitasi",d:"Gaya, massa, percepatan, dan gravitasi.",b:`<h3>Tiga hukum Newton</h3><p>I: benda diam atau GLB bila resultan gaya nol. II: <span class="f">ΣF = m·a</span> III: aksi sama dengan reaksi, berlawanan arah, bekerja pada dua benda berbeda.</p><h3>Gaya pada lift</h3><div class="f">Naik dipercepat: N = m(g + a)<br>Turun dipercepat: N = m(g − a)</div><h3>Gravitasi Newton</h3><div class="f">F = G·m1·m2 / r²</div><p>Jarak dilipatkan dua, gaya menjadi ¼ kalinya.</p>`,
+q:[["Benda 5 kg dipercepat 3 m/s². Resultan gayanya…",["8 N","15 N","1,7 N","53 N"],1,"ΣF = ma = 5×3 = 15 N."],
+["Orang 50 kg di lift naik dipercepat 2 m/s² (g=10). Gaya normalnya…",["400 N","500 N","600 N","100 N"],2,"N = m(g+a) = 50×12 = 600 N."],
+["Jarak antara dua benda dijadikan 2 kali semula. Gaya gravitasinya menjadi…",["½ kali","¼ kali","2 kali","4 kali"],1,"F ∝ 1/r², sehingga (1/2)² = ¼."],
+["Orang 50 kg di lift turun dipercepat 2 m/s² (g=10). Gaya normalnya…",["400 N","500 N","600 N","0 N"],0,"N = m(g−a) = 50×8 = 400 N."]],
+e:"Mengapa berat badan terasa berkurang saat lift mulai turun? Jelaskan dengan Hukum II Newton."},
+{t:"Gerak Vertikal dan Jatuh Bebas",d:"Gerak naik-turun akibat gravitasi.",b:`<h3>Jatuh bebas</h3><p>v0 = 0, hanya dipengaruhi gravitasi (hambatan udara diabaikan), percepatan g ≈ 10 m/s².</p><div class="f">v = g·t<br>h = ½·g·t²</div><h3>Lemparan ke atas</h3><div class="f">v = v0 − g·t<br>hmax = v0² / 2g</div><p>Di titik tertinggi kecepatan sesaat = 0, tetapi percepatan tetap g ke bawah.</p>`,
+q:[["Benda jatuh bebas selama 3 s (g=10). Ketinggian yang ditempuh…",["30 m","45 m","90 m","15 m"],1,"h = ½·10·9 = 45 m."],
+["Bola dilempar ke atas 20 m/s (g=10). Tinggi maksimumnya…",["10 m","20 m","40 m","2 m"],1,"h = 400/20 = 20 m."],
+["Di titik tertinggi gerak vertikal ke atas…",["v=0 dan a=0","v=0 dan a=g","v=maks","a=0"],1,"Kecepatan nol sesaat, percepatan tetap g."],
+["Benda jatuh bebas dari 80 m (g=10). Waktu sampai tanah…",["2 s","4 s","8 s","16 s"],1,"80 = 5t², t² = 16, t = 4 s."]],
+e:"Mengapa pada kenyataannya bulu dan batu jatuh tidak bersamaan di udara, padahal di ruang hampa bersamaan?"},
+{t:"Gerak Parabola",d:"Gabungan GLB horizontal dan GLBB vertikal.",b:`<h3>Konsep</h3><p>Uraikan v0 menjadi v0x = v0 cos θ (konstan) dan v0y = v0 sin θ (dipengaruhi gravitasi).</p><div class="f">x = v0 cos θ · t<br>y = v0 sin θ · t − ½ g t²<br>hmax = (v0 sin θ)² / 2g<br>R = v0² sin 2θ / g</div><p>Jangkauan maksimum pada θ = 45°. Sudut θ dan (90° − θ) memberi jangkauan sama.</p>`,
+q:[["Peluru v0=20 m/s, θ=30° (g=10). Tinggi maksimumnya…",["5 m","10 m","20 m","2,5 m"],0,"hmax = (20·0,5)²/20 = 100/20 = 5 m."],
+["Bola ditendang 20 m/s, θ=45° (g=10). Jangkauannya…",["20 m","40 m","80 m","10 m"],1,"R = 400·sin90°/10 = 40 m."],
+["Pada gerak parabola tanpa hambatan, komponen kecepatan horizontal…",["Bertambah","Berkurang","Konstan","Nol di puncak"],2,"Tidak ada gaya horizontal, sehingga vx konstan."],
+["Jangkauan sama akan dihasilkan oleh sudut tembak…",["30° dan 45°","30° dan 60°","45° dan 60°","20° dan 80°"],1,"θ dan 90°−θ: 30° dan 60° jangkauannya sama."]],
+e:"Peluru ditembakkan dengan v0 dan θ tertentu. Uraikan langkah menghitung posisi (x, y) pada t = 2 s."},
+{t:"Gerak Melingkar",d:"Periode, frekuensi, dan hubungan roda.",b:`<h3>Besaran dasar</h3><div class="f">T = 1/f<br>ω = 2πf = 2π/T<br>v = ω·r<br>a_s = v²/r = ω²r<br>F_s = m·v²/r</div><h3>Hubungan roda</h3><p>Roda bersinggungan atau dihubungkan sabuk/rantai: kecepatan linier (v) sama. Roda sepusat/seporos: kecepatan sudut (ω) sama.</p>`,
+q:[["Periode putaran kipas 0,5 s. Frekuensinya…",["0,5 Hz","2 Hz","5 Hz","1 Hz"],1,"f = 1/T = 2 Hz."],
+["Frekuensi 2 Hz. Kecepatan sudutnya…",["2π rad/s","4π rad/s","π rad/s","8π rad/s"],1,"ω = 2π·2 = 4π rad/s."],
+["Dua roda dihubungkan sabuk. Besaran yang sama…",["Kecepatan sudut","Periode","Kecepatan linier","Frekuensi"],2,"Sabuk memindahkan titik tepi dengan v yang sama."],
+["Benda bergerak melingkar v=10 m/s, r=5 m. Percepatan sentripetalnya…",["2 m/s²","20 m/s²","50 m/s²","10 m/s²"],1,"a = v²/r = 100/5 = 20 m/s²."]],
+e:"Dua roda berjari-jari 10 cm dan 20 cm dihubungkan rantai. Roda kecil berputar 4 Hz. Hitung frekuensi roda besar dan jelaskan alasannya."}];
+const X=["<h3>Catatan penting</h3><p>Perpindahan bisa lebih kecil dari jarak, bahkan nol (pulang ke titik awal). Sudut selalu diukur dari sumbu x positif. Jika diminta resultan, uraikan semua vektor dulu, jumlahkan komponen x dan y secara terpisah, baru gabungkan dengan Pythagoras. Kesalahan umum: menjumlahkan besar vektor begitu saja.</p>","<h3>Catatan penting</h3><p>Laju = jarak/waktu (skalar); kecepatan = perpindahan/waktu (vektor). Pada grafik v-t, kemiringan = percepatan dan luas = perpindahan; di grafik s-t, kemiringan = kecepatan. Pilih rumus GLBB sesuai besaran yang diketahui: tidak ada t gunakan vt²=v0²+2as, tidak ada s gunakan vt=v0+at.</p>","<h3>Catatan penting</h3><p>Massa mengukur kelembaman (kg), berat adalah gaya gravitasi (w=mg, N). Pasangan aksi-reaksi bekerja pada benda berbeda sehingga tidak saling meniadakan. Gaya normal bukan selalu sama dengan berat, misalnya di lift. Terminal velocity tercapai saat gaya hambat = berat.</p>","<h3>Catatan penting</h3><p>Pilih satu arah positif dan konsisten. Jika ke atas positif, g bernilai −10. Waktu naik = waktu turun = v0/g. Kecepatan saat kembali ke titik lempar sama besar dengan v0 tetapi arahnya berlawanan. Massa tidak memengaruhi gerak jatuh bebas tanpa hambatan udara.</p>","<h3>Catatan penting</h3><p>Sumbu x dan y dianalisis terpisah, penghubungnya hanya waktu t. Lama di udara T=2v0 sinθ/g. Pada gerak mendatar dari ketinggian h: t=√(2h/g) dan x=v0·t. Di titik puncak vy=0 tetapi vx tetap v0 cosθ, sehingga kelajuan di puncak tidak nol.</p>","<h3>Catatan penting</h3><p>Percepatan sentripetal selalu mengarah ke pusat dan tegak lurus kecepatan; ia mengubah arah, bukan besar kecepatan. Gaya sentripetal bukan gaya baru, melainkan resultan gaya yang mengarah ke pusat (tegangan tali, gesekan, gravitasi). Satuan: 1 putaran = 2π rad; rpm = putaran per menit, f = rpm/60.</p>"];
+const KS=[[1,0,"Vektor","Identifikasi besaran vektor","Manakah yang termasuk vektor: massa, perpindahan, waktu, laju?","Vektor punya nilai dan arah. Massa, waktu, laju hanya punya nilai (skalar). <b>Jawaban: perpindahan.</b>"],
+[2,0,"Vektor","Menghitung besar perpindahan dari narasi rute (soal PG 2, 4)","Budi berjalan 6 m ke timur lalu 8 m ke utara. Berapa besar perpindahannya?","1) Arah saling tegak lurus, gunakan Pythagoras. 2) R=√(6²+8²)=√100=10 m. <b>Jawaban: 10 m</b> (jaraknya 14 m)."],
+[3,0,"Vektor","Menguraikan gaya pada sumbu X dan Y (soal 3, 18)","Gaya 50 N membentuk sudut 37° terhadap sumbu x (sin37°=0,6; cos37°=0,8). Tentukan Fx dan Fy.","Fx=F cosθ=50×0,8=40 N. Fy=F sinθ=50×0,6=30 N. Cek: √(40²+30²)=50 N. <b>Fx=40 N, Fy=30 N.</b>"],
+[4,0,"Vektor","Menjodohkan istilah, metode, dan penerapan vektor (soal 5)","Jodohkan: (a) resultan, (b) metode poligon, (c) uraian vektor dengan (1) memecah vektor menjadi komponen, (2) pangkal vektor berikutnya di ujung vektor sebelumnya, (3) hasil penjumlahan vektor.","Resultan = hasil penjumlahan vektor (3). Poligon = sambung ujung ke pangkal (2). Uraian = memecah menjadi komponen x dan y (1). <b>a-3, b-2, c-1.</b> Penerapan: arah pelayaran perahu karena arus sungai."],
+[5,1,"Kinematika Gerak","Menganalisis pernyataan jarak, waktu, besaran fisika dari peta rute (soal 6)","Rute rumah-sekolah: 3 km timur lalu 4 km utara, ditempuh 20 menit. Tentukan jarak, perpindahan, laju rata-rata, kecepatan rata-rata.","Jarak=3+4=7 km. Perpindahan=√(9+16)=5 km. t=20 menit=1/3 jam. Laju=7÷(1/3)=21 km/jam. Kecepatan=5÷(1/3)=15 km/jam. <b>Jarak lebih besar dari perpindahan.</b>"],
+[6,2,"Gaya Gravitasi","Menganalisis pernyataan benar tentang gravitasi Newton (soal 7)","Gaya tarik dua benda F. Jika jarak dijadikan 3 kali dan massa salah satu benda 2 kali, berapa gaya barunya?","F=G m1 m2/r². Massa 2× membuat gaya 2×. Jarak 3× membuat gaya 1/9. F'=2/9 F. <b>Jawaban: 2F/9.</b> Gaya gravitasi selalu tarik-menarik dan sama besar pada kedua benda."],
+[7,3,"Gerak Vertikal","Menganalisis besaran fisika pelemparan koin (soal 8)","Koin dilempar ke atas 10 m/s (g=10). Tentukan waktu ke puncak, tinggi maksimum, kecepatan dan percepatan di puncak.","t naik=v0/g=1 s. hmax=v0²/2g=100/20=5 m. Di puncak v=0, percepatan tetap 10 m/s² ke bawah. Total di udara=2 s. <b>t=1 s, h=5 m, v=0, a=10 m/s².</b>"],
+[8,1,"Kinematika (grafik v-t)","Menentukan jenis gerak dan menganalisis kecepatan dari grafik (soal 9, 10)","Grafik v-t mobil: v naik dari 0 ke 20 m/s pada 0-4 s, lalu tetap 20 m/s sampai 10 s. Tentukan jenis gerak, percepatan awal, dan jarak total.","0-4 s garis miring = GLBB, a=20/4=5 m/s². 4-10 s datar = GLB. Jarak=luas: segitiga ½×4×20=40 m; persegi panjang 6×20=120 m. <b>Total 160 m.</b>"],
+[9,2,"Hukum Newton","Percepatan, gaya hambat, kecepatan pada bungee jumping/terjun payung (soal 11, 12)","Penerjun 80 kg (g=10). (a) Saat payung baru terbuka gaya hambat 200 N, berapa percepatannya? (b) Saat kecepatan konstan, berapa gaya hambatnya?","w=800 N. (a) ΣF=w−f=600 N, a=600/80=7,5 m/s² ke bawah. (b) Kecepatan konstan berarti a=0, ΣF=0, jadi f=w. <b>(a) 7,5 m/s²; (b) 800 N.</b>"],
+[10,2,"Hukum Newton","Gaya pada lift yang bergerak (soal 13)","Orang 60 kg di lift (g=10). Tentukan gaya normal saat lift naik dipercepat 1 m/s², turun dipercepat 1 m/s², dan bergerak konstan.","Naik: N=m(g+a)=60×11=660 N. Turun: N=m(g−a)=60×9=540 N. Konstan: N=mg=600 N. <b>660 N, 540 N, 600 N.</b>"],
+[11,3,"Gerak Jatuh Bebas","Karakteristik dan syarat jatuh bebas (soal 14, 15)","Batu 2 kg dan 1 kg dilepas bersamaan dari 20 m (tanpa hambatan udara). Mana lebih dulu tiba? Berapa waktu dan kecepatan tiba?","Syarat: v0=0, hanya gravitasi. h=½gt² maka t=√(2×20/10)=2 s untuk keduanya karena massa tidak berpengaruh. v=gt=20 m/s. <b>Tiba bersamaan, t=2 s, v=20 m/s.</b>"],
+[12,4,"Gerak Parabola","Karakteristik gerak parabola (soal 16)","Bola ditendang 20 m/s dengan sudut 60°. Berapa kecepatan bola di titik tertinggi?","Di puncak vy=0, tetapi vx konstan=v0 cosθ=20×0,5=10 m/s. <b>Jawaban: 10 m/s (mendatar).</b>"],
+[13,0,"Vektor","Resultan tiga gaya (soal 17)","Tiga gaya: 8 N ke arah sumbu x+ (0°), 6 N ke sumbu y+ (90°), dan 4 N ke sumbu x− (180°). Tentukan resultannya.","Rx=8−4=4 N. Ry=6 N. R=√(4²+6²)=√52≈7,2 N. <b>Jawaban: ≈7,2 N.</b>"],
+[14,1,"Kinematika (grafik v-t)","Menentukan selang waktu GLB (soal 19)","Grafik v-t partikel: naik 0-2 s, datar pada 6 m/s selama 2-5 s, turun 5-8 s. Kapan partikel mengalami GLB?","GLB berarti kecepatan tetap, yaitu bagian datar. <b>Selang 2 s sampai 5 s</b> dengan jarak 6×3=18 m."],
+[15,1,"Gerak Lurus (GLBB)","Menghitung waktu tempuh kendaraan dari data (soal 20)","Mobil 1000 kg dipercepat dari 10 m/s menjadi 20 m/s sejauh 150 m. Berapa waktu tempuh?","Massa tidak diperlukan. 20²=10²+2a(150) maka a=1 m/s². t=(20−10)/1=10 s. Cek: s=10·10+½·1·100=150 m. <b>Jawaban: 10 s.</b>"],
+[16,1,"Gerak Lurus (GLB)","Karakteristik GLB (soal 21)","Mobil 72 km/jam konstan selama 30 s. Berapa jaraknya dan berapa resultan gayanya?","72 km/jam=20 m/s. s=vt=600 m. GLB berarti a=0 sehingga ΣF=0. <b>600 m dan ΣF=0.</b>"],
+[17,4,"Gerak Parabola","Jarak mendatar benda dari pesawat (soal 22)","Pesawat mendatar 100 m/s pada ketinggian 500 m menjatuhkan paket (g=10). Berapa jarak mendatar jatuhnya?","Vertikal jatuh bebas: t=√(2h/g)=√100=10 s. Horizontal GLB: x=100×10=1000 m. <b>Jawaban: 1000 m.</b>"],
+[18,4,"Gerak Parabola","Tinggi maksimum peluru (soal 23)","Peluru 50 m/s dengan sudut 53° (sin53°=0,8). Berapa tinggi maksimumnya (g=10)?","v0y=50×0,8=40 m/s. hmax=v0y²/2g=1600/20=80 m. <b>Jawaban: 80 m.</b>"],
+[19,4,"Gerak Parabola","Jangkauan maksimum dari meriam (soal 24)","Meriam menembak 100 m/s. Berapa jangkauan maksimumnya (g=10)?","Maksimum pada θ=45°, sin90°=1. R=v0²/g=10000/10=1000 m. <b>Jawaban: 1000 m.</b>"],
+[20,4,"Gerak Parabola","Membandingkan tinggi maksimum dan jangkauan dua sudut (soal 25, 27)","Dua benda ditembakkan dengan kecepatan sama pada 30° dan 60°. Bandingkan tinggi maksimum dan jangkauannya.","hmax ∝ sin²θ: sin²30°:sin²60°=¼:¾=1:3. R ∝ sin2θ: sin60°=sin120°, sehingga sama. <b>h30:h60=1:3 dan R30:R60=1:1.</b>"],
+[21,4,"Gerak Parabola","Kecepatan awal dari waktu dan jarak mendatar (soal 26)","Bola ditendang 53° (sin=0,8; cos=0,6), mendarat 60 m dari titik tendang setelah 4 s. Berapa kecepatan awalnya?","vx=x/t=60/4=15 m/s. vx=v0 cosθ maka v0=15/0,6=25 m/s. Cek: T=2·25·0,8/10=4 s. <b>Jawaban: 25 m/s.</b>"],
+[22,5,"Gerak Melingkar","Frekuensi, percepatan, gaya sentripetal (soal 28)","Benda 2 kg berputar pada tali r=0,5 m, 120 putaran/menit. Tentukan f, T, ω, v, as, Fs.","f=120/60=2 Hz. T=0,5 s. ω=2πf=4π rad/s. v=ωr=2π≈6,28 m/s. as=ω²r=8π²≈79 m/s². Fs=m·as=16π²≈158 N. <b>Hasil seperti di atas.</b>"],
+[23,5,"Gerak Melingkar","Kecepatan linier roda sepusat (soal 29, 31)","Dua silinder sepusat berjari-jari 10 cm dan 25 cm. Titik tepi silinder kecil berkecepatan 4 m/s. Berapa kecepatan titik tepi silinder besar?","Sepusat berarti ω sama. ω=v/r=4/0,1=40 rad/s. v2=ωr2=40×0,25=10 m/s. <b>Jawaban: 10 m/s.</b>"],
+[24,5,"Gerak Melingkar","Jari-jari lintasan dari laju linier dan periode (soal 30)","Roda berlaju linier 6π m/s dengan periode 2 s. Berapa jari-jari lintasannya?","v=2πr/T maka r=vT/2π=6π×2/2π=6 m. <b>Jawaban: 6 m.</b>"],
+[25,5,"Gerak Melingkar","Periode dan frekuensi kipas angin (soal 32)","Kipas berputar 600 kali dalam 1 menit. Tentukan f dan T.","f=600/60=10 Hz. T=1/f=0,1 s. <b>f=10 Hz, T=0,1 s.</b>"],
+[26,5,"Gerak Melingkar","Contoh penerapan roda bersinggungan dan sepusat (soal 33, 34)","Berikan contoh roda bersinggungan dan roda sepusat pada sepeda, serta besaran yang sama pada masing-masing.","Bersinggungan/sabuk: gir depan dan gir belakang dengan rantai (atau roda gigi), v sama. Sepusat: gir belakang dan roda belakang pada satu poros, ω sama. <b>Bersinggungan: v sama; sepusat: ω sama.</b>"],
+[27,5,"Gerak Melingkar","Kecepatan sudut roda dihubungkan sabuk (soal 35)","Roda A (r=20 cm, ω=10 rad/s) dan roda B (r=5 cm) dihubungkan sabuk. Berapa ωB?","Sabuk membuat v sama. vA=ωA·rA=10×0,2=2 m/s. ωB=vB/rB=2/0,05=40 rad/s. <b>Jawaban: 40 rad/s.</b>"],
+[28,0,"Vektor (uraian 1)","Resultan perpindahan mahasiswa dengan rute saling tegak lurus","Mahasiswa berjalan 80 m ke timur lalu 60 m ke utara. Hitung resultan perpindahan dan jaraknya.","Perpindahan=√(80²+60²)=√10000=100 m. Jarak=80+60=140 m. Tulis rumus, substitusi, hasil beserta satuan. <b>100 m dan 140 m.</b>"],
+[29,1,"Kinematika grafik v-t (uraian 2)","Jenis gerak dan kapan kecepatan sama atau saling menyusul","Kendaraan A: v=10 m/s konstan. Kendaraan B: dari diam, a=2 m/s². Keduanya start bersamaan dari titik sama. Kapan kecepatannya sama dan kapan B menyusul A?","A GLB, B GLBB. Kecepatan sama: 10=2t, t=5 s. Menyusul: posisi sama, 10t=½·2·t²=t² sehingga t=10 s. <b>Sama pada 5 s, menyusul pada 10 s.</b>"],
+[30,1,"Kinematika Gerak (uraian 3)","Membuktikan pernyataan jarak, kecepatan, perpindahan dari peta","Dari A ke B: 3 km timur lalu 4 km utara dalam 10 menit. Buktikan: jarak lebih besar dari perpindahan dan laju rata-rata lebih besar dari kecepatan rata-rata.","Jarak=7 km, perpindahan=5 km, jadi 7>5. t=1/6 jam. Laju=42 km/jam, kecepatan=30 km/jam, jadi 42>30. <b>Pernyataan terbukti.</b> Pembuktian wajib memakai angka."],
+[31,4,"Gerak Parabola (uraian 4)","Menguraikan kecepatan awal dan menghitung posisi (x, y)","Peluru ditembakkan 50 m/s dengan sudut 37° (sin=0,6; cos=0,8). Tentukan posisi (x, y) pada t=2 s.","v0x=50×0,8=40 m/s. v0y=50×0,6=30 m/s. x=40×2=80 m. y=30×2−½·10·2²=60−20=40 m. <b>Posisi (80 m, 40 m).</b>"],
+[32,5,"Gerak Melingkar (uraian 5)","Menggambar susunan empat roda dan menghitung kecepatan sudut","A-B bersinggungan; B-C sepusat; C-D dihubungkan sabuk. rA=10, rB=20, rC=5, rD=15 (cm); ωA=20 rad/s. Hitung ωD.","Gambar: A menyentuh B; B dan C satu poros; sabuk C-D. vA=20×0,1=2 m/s=vB. ωB=2/0,2=10 rad/s=ωC. vC=10×0,05=0,5 m/s=vD. ωD=0,5/0,15≈3,33 rad/s. <b>ωD≈3,33 rad/s.</b>"]];
+function kisi(){ttl.textContent="Kisi-kisi";S.k=S.k||{};m.innerHTML=`<h2>Pembahasan sesuai kisi-kisi</h2><p class="ex">32 indikator, urut seperti kisi-kisi. Coba kerjakan dulu sebelum membuka pembahasan.</p>`+KS.map(k=>`<div class="c"><span class="tag">${k[0]}. ${k[2]}</span><p><b>${k[3]}</b></p><p>${k[4]}</p><details><summary>Lihat pembahasan</summary><p>${k[5]}</p></details><div class="row"><button class="g" onclick="go('mat',${k[1]})">Materi</button><label><input type="checkbox" ${S.k[k[0]]?"checked":""} onchange="S.k[${k[0]}]=this.checked;save()"> Sudah paham</label></div></div>`).join("")}
+const K="fisikaXI",S=(()=>{try{return JSON.parse(localStorage.getItem(K))||{}}catch(e){return{}}})();
+S.done=S.done||{};S.sc=S.sc||{};S.h=S.h||[];S.n=S.n||{};
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+function theme(){const r=document.documentElement,d=r.dataset.theme==="dark"||(!r.dataset.theme&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=d?"light":"dark";S.th=r.dataset.theme;save()}
+if(S.th)document.documentElement.dataset.theme=S.th;
+const m=document.getElementById("m"),ttl=document.getElementById("ttl");
+const lvl=s=>s<60?"Perlu mengulang materi":s<80?"Cukup, perlu latihan tambahan":s<90?"Paham dengan baik":"Sangat baik";
+function go(p,i){scrollTo(0,0);({home,mat,quiz,notes,kisi})[p](i)}
+function home(){ttl.textContent="Belajar Fisika XI";const n=Object.keys(S.done).length,tot=D.length,pc=Math.round(n/tot*100);
+const nx=D.findIndex((_,i)=>!S.done[i]),last=S.h.length?S.h[S.h.length-1]:null;
+m.innerHTML=`<div class="c"><h2>Halo, selamat belajar</h2><p class="ex">Berdasarkan kisi-kisi Asesmen Sumatif Akhir Semester Fisika XI 2026/2027.</p>
+<div class="row"><span class="tag">${n}/${tot} bab selesai</span><span class="tag">${S.h.length} latihan</span><span class="tag">Nilai terakhir: ${last?last.s:"-"}</span></div>
+<div class="bar" style="margin:12px 0"><i style="width:${pc}%"></i></div>
+<button onclick="go('mat',${nx<0?0:nx})">${nx<0?"Ulangi dari awal":"Lanjut: "+D[nx].t}</button></div>
+<h3>Daftar bab</h3>`+D.map((c,i)=>`<button class="ch" onclick="go('mat',${i})"><span style="flex:1"><b>${c.t}</b><small>${c.d}${S.sc[i]!=null?" · Nilai "+S.sc[i]+" ("+lvl(S.sc[i])+")":""}</small></span>${S.done[i]?'<span class="tag">Selesai</span>':""}</button>`).join("")+
+`<button class="x" onclick="if(confirm('Hapus semua progres, nilai, dan catatan?')){localStorage.removeItem(K);location.reload()}">Reset progres</button>`}
+function mat(i){const c=D[i];ttl.textContent="Bab "+(i+1);
+m.innerHTML=`<div class="c"><h2>${c.t}</h2>${c.b}${X[i]}</div>
+<div class="c"><b>Catatan pribadi</b><textarea id="nt" placeholder="Tulis catatan di sini…" oninput="S.n[${i}]=this.value;save()">${S.n[i]||""}</textarea></div>
+<div class="row"><button onclick="S.done[${i}]=!S.done[${i}];if(!S.done[${i}])delete S.done[${i}];save();go('mat',${i})" class="${S.done[i]?"g":""}">${S.done[i]?"Batal tandai selesai":"Tandai selesai"}</button><button onclick="go('quiz',${i})">Latihan soal</button>
+${i>0?`<button class="g" onclick="go('mat',${i-1})">Sebelumnya</button>`:""}${i<D.length-1?`<button class="g" onclick="go('mat',${i+1})">Berikutnya</button>`:""}</div>`}
+function notes(){ttl.textContent="Catatan";m.innerHTML="<h2>Catatan saya</h2>"+(D.map((c,i)=>S.n[i]?`<div class="c"><b>${c.t}</b><p style="white-space:pre-wrap">${S.n[i].replace(/</g,"&lt;")}</p></div>`:"").join("")||'<p class="ex">Belum ada catatan. Buka satu bab dan tulis catatan di bawah materinya.</p>')}
+function quiz(i){const c=D[i];ttl.textContent="Latihan: Bab "+(i+1);
+m.innerHTML=`<h2>${c.t}</h2>`+c.q.map((q,k)=>`<div class="c"><b>${k+1}. ${q[0]}</b>`+q[1].map((o,j)=>`<label class="o"><input type="radio" name="q${k}" value="${j}"> ${"ABCD"[j]}. ${o}</label>`).join("")+`<div class="ex" id="e${k}"></div></div>`).join("")+
+`<div class="c"><b>Essay</b><p>${c.e}</p><textarea id="es" placeholder="Jawab dengan kata-katamu sendiri…"></textarea><div class="ex" id="ee"></div></div>
+<div class="row"><button onclick="grade(${i})">Periksa jawaban</button><button class="g" onclick="go('mat',${i})">Kembali ke materi</button></div><div class="c" id="res" hidden></div>`}
+function grade(i){const c=D[i];let ok=0;c.q.forEach((q,k)=>{const s=document.querySelector(`input[name=q${k}]:checked`),L=document.querySelectorAll(`input[name=q${k}]`);
+L.forEach((r,j)=>{r.disabled=true;const p=r.parentElement;if(j==q[2])p.classList.add("ok");else if(r.checked)p.classList.add("no")});
+const good=s&&+s.value==q[2];if(good)ok++;document.getElementById("e"+k).textContent=(good?"Benar. ":s?"Kurang tepat. ":"Belum dijawab. ")+q[3]});
+const sc=Math.round(ok/c.q.length*100);S.sc[i]=sc;S.h.push({c:i,s:sc,d:new Date().toLocaleDateString("id-ID")});save();
+document.getElementById("ee").textContent="Cek mandiri: pastikan jawabanmu memuat konsep kunci dari materi bab ini, lalu bandingkan dengan penjelasan di materi.";
+const r=document.getElementById("res");r.hidden=false;r.innerHTML=`<b>Nilai ${sc}</b> (${ok} benar, ${c.q.length-ok} salah/kosong). ${lvl(sc)}. ${sc<80?"Disarankan membaca ulang materi bab ini.":""}`;r.scrollIntoView({behavior:"smooth"})}
+home();
+</script></body></html>
